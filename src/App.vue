@@ -1,9 +1,6 @@
 <template>
     <div id="app">
-        <nav>
-            <router-link to="/users">Users</router-link>
-            <router-link to="/albums">Albums</router-link>
-        </nav>
+        <app-header />
         <transition name="fade" mode="out-in">      
             <router-view></router-view>
         </transition>
@@ -11,8 +8,13 @@
 </template>
 
 <script>
+import Header from './components/Header';
+
 export default {
     name: "app",
+    components: {
+        "app-header": Header
+    },
     data() {
         return {};
     }
@@ -20,4 +22,13 @@ export default {
 </script>
 
 <style lang="scss">
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.5s ease;
+    }
+
+    .fade-enter,
+    .fade-leave-active {
+        opacity: 0;
+    }
 </style>
