@@ -1,18 +1,23 @@
 <template>
     <div>
         <h1>User List</h1>
-        <router-link v-for="userId in users" 
-            v-bind:key="userId" 
-            :to="'/user/' + userId"
-        >{{ usersData[userId].name }}</router-link>
+        <user-item v-for="userId in users" 
+            :key="userId"
+            :user="usersData[userId]"
+        />
     </div>
 </template>
 
 
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex';
+import UserItem from './UserItem';
 
 export default {
+    components: {
+        UserItem
+    },
+
     data() {
         return {
         };

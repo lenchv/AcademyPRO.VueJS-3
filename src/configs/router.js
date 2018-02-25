@@ -8,7 +8,7 @@ const UserDetail = () => import("../components/User/UserDetail");
 
 Vue.use(Router);
 
-export default new Router({
+export const router = new Router({
   base: '/',
   mode: 'history',
   routes: [
@@ -34,3 +34,5 @@ export default new Router({
     }
   ]
 });
+
+export default router;

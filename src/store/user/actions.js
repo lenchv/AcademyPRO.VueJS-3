@@ -1,21 +1,28 @@
+import userService from '../../services/userService';
+
 const actions = {
     fetchUsers({ commit }) {
-        commit('SET_USERS', {
-            1: {
-                id: 1,
-                name: 'Ivan',
-                email: 'ivan@mail.com'
-            },
-            2: {
-                id: 2,
-                name: 'Petro',
-                email: 'petr@mail.com'
-            }
+        userService.getUsers().then(users => {
+            commit('SET_USERS', users);    
         });
     },
 
     addUser({ commit }, data) {
-        commit('ADD_USER', data);
+        userService.addUser(data).then(user => {
+            commit('ADD_USER', user);
+        });
+    },
+
+    editUser({ commit }, user, data) {
+        userService.editUser(user, data).then(user => {
+            commit('EDIT_USER', user);
+        });
+    },
+
+    deleteUser({ commit }, user) {
+        userService.deleteUser(user).then(() => {
+            commit('DELETE_USER', user.id);
+        });
     }
 };
 

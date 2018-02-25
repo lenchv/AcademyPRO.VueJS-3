@@ -5,12 +5,14 @@ const mutations = {
     },
     
     DELETE_USER (state, userId) {
-        const i = state.map.indexOf(userId);
+        const i = state.map.findIndex(id => userId == id);
 
-        state.map = [...state.map.slice(0, i), ...state.map.slice(i + 1, state.map.length)];
-        state.data = {...state.data};
+        if (i !== -1) {
+            state.map = [...state.map.slice(0, i), ...state.map.slice(i + 1, state.map.length)];
+            state.data = {...state.data};
 
-        delete state.data[userId]
+            delete state.data[userId]
+        }
     },
     
     EDIT_USER (state, user) {
